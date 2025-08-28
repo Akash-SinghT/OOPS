@@ -6,26 +6,38 @@ public class validanagram {
     public boolean checkAnagram(String s1, String s2) {
         if (s1.length() != s2.length()) return false;
 
-        HashMap<Character, Integer> map = new HashMap<>();
+        // HashMap<Character, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < s1.length(); i++) {
-            map.put(s1.charAt(i), map.getOrDefault(s1.charAt(i), 0) + 1);
+        // for (int i = 0; i < s1.length(); i++) {
+        //     map.put(s1.charAt(i), map.getOrDefault(s1.charAt(i), 0) + 1);
+        // }
+
+        // for (int i = 0; i < s2.length(); i++) {
+        //     char ch = s2.charAt(i);
+        //     if (map.containsKey(ch)) {
+        //         if (map.get(ch) == 1) {
+        //             map.remove(ch);
+        //         } else {
+        //             map.put(ch, map.get(ch) - 1);
+        //         }
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
+        // return map.isEmpty();
+        int [] arr = new int[26];
+        for(int i=0;i<s1.length();i++){
+          arr[s1.charAt(i)-'a']++;
+          arr[s2.charAt(i)-'a']--;
         }
 
-        for (int i = 0; i < s2.length(); i++) {
-            char ch = s2.charAt(i);
-            if (map.containsKey(ch)) {
-                if (map.get(ch) == 1) {
-                    map.remove(ch);
-                } else {
-                    map.put(ch, map.get(ch) - 1);
-                }
-            } else {
-                return false;
-            }
+        for(int i=0;i<arr.length;i++){
+          if(arr[i]!=0){
+            return false;
+          }
         }
-
-        return map.isEmpty();
+        return true;
     }
 
     public static void main(String[] args) {
